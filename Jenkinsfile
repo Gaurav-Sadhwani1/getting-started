@@ -18,9 +18,7 @@ pipeline {
             steps {
                 script {
                     // Install dependencies (Node.js)
-					sh 'cd app'
-					sh 'ls'
-                    sh 'yarn install'
+                    sh 'yarn add app/'
                 }
             }
         }
