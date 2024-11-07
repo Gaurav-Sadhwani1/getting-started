@@ -27,7 +27,7 @@ pipeline {
             steps {
                 script {
                     // Build Docker image and tag it
-                    dockerImage = docker.build(DOCKER_IMAGE_TAG)
+                    sh "docker build -t ${DOCKER_IMAGE_TAG} ."
                 }
             }
         }
@@ -36,7 +36,7 @@ pipeline {
             steps {
                 script {
                         // Push the Docker image to Docker Hub
-                        dockerImage.push("latest")
+                        sh "docker push ${DOCKER_IMAGE_TAG}"
                     }
                 }
             }
