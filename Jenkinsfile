@@ -27,8 +27,7 @@ pipeline {
             steps {
                 script {
                     // Build Docker image and tag it
-					sh 'ls'
-                    dockerImage = docker.build("${DOCKER_IMAGE_TAG}")
+                    dockerImage = docker.build(DOCKER_IMAGE_TAG)
                 }
             }
         }
@@ -36,8 +35,6 @@ pipeline {
         stage('Push Docker Image to Docker Hub') {
             steps {
                 script {
-                    // Log in to Docker Hub
-                    docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-credentials-id') {
                         // Push the Docker image to Docker Hub
                         dockerImage.push("latest")
                     }
